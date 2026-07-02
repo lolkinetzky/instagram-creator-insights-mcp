@@ -37,6 +37,8 @@ A few design decisions I'd actually defend in a code review:
 - **The similarity index builds itself.** Every time any tool fetches a profile, that creator gets embedded (bio + category + recent captions) and upserted into a local Chroma collection. Research ten creators, and `find_similar_creators` already has a neighborhood to search. No ingestion step, no cron job, no "please run the indexer."
 - **Embeddings run locally.** Chroma's default ONNX model (all-MiniLM-L6-v2) — free, offline, zero extra API keys. At production scale you'd swap in a hosted embedding model and pgvector, but for a working prototype the tradeoff math says keep it simple.
 
+Curious what the production version would look like? The full gap analysis is in [ARCHITECTURE.md](ARCHITECTURE.md).
+
 ## Setup
 
 ```bash
